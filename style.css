@@ -1,0 +1,17 @@
+body {
+  font-size: 10px;
+}
+
+header {
+  background-color: orange;
+  padding: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+main {
+  background-color: red;
+}
+
