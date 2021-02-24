@@ -1,0 +1,65 @@
+body {
+  font-size: 10px;
+}
+
+header {
+  background-color: orange;
+  padding: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+main {
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  width: 98vw;
+}
+
+.search-container {
+    /* background-color: blue; */
+    padding: 1rem;
+
+}
+
+.list-group {
+    font-size: 1.5rem;
+}
+
+.list-group li {
+    padding: 1rem;
+}
+
+.results-container {
+    /* background-color: blue; */
+    padding: 1rem;
+}
+
+#one-day-result {
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    box-shadow: 1px 1px 10px rgb(199, 199, 199);
+    
+}
+
+.result-p {
+    font-size: 1.5rem;
+    padding-top: 1.2rem;
+}
+
+#five-day-forecast {
+    padding-top: .5rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+}
+
+.card {
+    padding: 1rem .5rem;
+    background-color: rgb(71, 71, 252);
+    color: white;
+}
