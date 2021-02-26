@@ -41,6 +41,10 @@ main {
     padding-top: 2rem;
     padding-bottom: 3rem;
     box-shadow: 1px 1px 10px rgb(199, 199, 199);
+    background-image:
+        linear-gradient(to right, #ffffff, #ffffff27,#3a252500),
+        url("assets/snow.jpg");
+    background-size: cover;
 }
 
 .result-p {
