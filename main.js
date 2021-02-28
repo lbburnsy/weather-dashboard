@@ -46,9 +46,22 @@ function checkRecentCities(data) {
 
 function populateOneDay(data) {
   oneDayResult.empty();
-  let city = data.city;
   let cityName = data.city.name;
   let listItem = data.list[0];
+  let id = data.list[0].weather[0].id;
+  console.log(id);
+
+  if (id[0] == 2) {
+    oneDayResult.css("background-image", "linear-gradient(to right, #ffffff, #ffffff27,#3a252500)" + ", url('assets/lightning.jpg')")
+  } else if (id[0] == 3 || id[0] == 5) {
+    oneDayResult.css("background-image", "linear-gradient(to right, #ffffff, #ffffff27,#3a252500)" + ", url('assets/rain.jpg')")
+  } else if (id[0] == 6) {
+    oneDayResult.css("background-image", "linear-gradient(to right, #ffffff, #ffffff27,#3a252500)" + ", url('assets/snow.jpg')")
+  } else if (id[0] == 800) {
+    oneDayResult.css("background-image", "linear-gradient(to right, #ffffff, #ffffff27,#3a252500)" + ", url('assets/clear.jpg')")
+  } else if (id[0] > 800) {
+    oneDayResult.css("background-image", "linear-gradient(to right, #ffffff, #ffffff27,#3a252500)" + ", url('assets/clouds.jpg')")
+  }
 
   let html =
     `<h2>${cityName}</h2>` +
