@@ -20,9 +20,7 @@ searchBtn.on("click", () => {
       populateOneDay(data);
       checkRecentCities(data);
       populateFiveDay(data);
-      // console.log(data);
-      // console.log(link);
-      // console.log(recentCities);
+      console.log(recentCities);
     });
 });
 
@@ -54,7 +52,7 @@ function populateOneDay(data) {
 
   let html =
     `<h2>${cityName}</h2>` +
-    `<p class="result-p">${listItem.main.temp}&deg F</p>` +
+    `<p class="result-p">${listItem.main.temp.toFixed(0)}&deg F</p>` +
     `<p class="result-p">${listItem.main.humidity}%</p>` +
     `<p class="result-p">${listItem.wind.speed} MPH</p>`;
 
@@ -62,6 +60,7 @@ function populateOneDay(data) {
 }
 
 function populateFiveDay(data) {
+  fiveDayResult.empty();
   let dataList = data.list;
   for (let i = 0; i < dataList.length; i++) {
     if (unixToHour(dataList[i].dt) > 4 && unixToHour(dataList[i].dt) < 8) {
@@ -69,11 +68,11 @@ function populateFiveDay(data) {
       let outputDiv = $("<div>");
       outputDiv.addClass("col-2 card");
       let html = 
-        `<h5 class="card-title">2/24/2021</h5>` +
+        `<h5 class="card-title">${unixToDate(dataList[i].dt)}</h5>` +
         `<div class="card-text">`+
         `<img src="https://openweathermap.org/img/wn/${listItem.weather[0].icon}@2x.png"` +
         `</div>` +
-        `<p class="card-text result-p">Temp: ${listItem.main.temp}&degF</p>` +
+        `<p class="card-text result-p">Temp: ${listItem.main.temp.toFixed(0)}&degF</p>` +
         `<p class="card-text result-p">Humidity: ${listItem.main.humidity}%</p>`;
 
       outputDiv.append(html);
@@ -88,4 +87,11 @@ function unixToHour(timestamp) {
   let date = new Date(unixTimestamp * 1000);
   let hour = date.getHours();
   return hour;
+}
+
+function unixToDate(timestamp) {
+  let unixTimestamp = timestamp;
+  let date = new Date(unixTimestamp * 1000);
+  let formatDate = date.toLocaleDateString("en-us");
+  return formatDate;  
 }
