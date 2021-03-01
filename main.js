@@ -3,12 +3,15 @@ const searchInput = $("#search-input");
 const oneDayResult = $("#one-day-result");
 const listGroup = $("#recent-cities");
 const fiveDayResult = $("#five-day-result");
+const fiveDayTitle = $("#five-day-title");
 
 let recentCities = [];
 
 const apiKey = "3eb9c4f39fdd105936858d16b944d3e1";
 
+// Runs this code on click of the search button to populate fields.
 searchBtn.on("click", () => {
+  // Gets the zip from the user input
   let zipCode = searchInput.val();
   let link = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
   fetch(link)
@@ -17,22 +20,23 @@ searchBtn.on("click", () => {
       populateOneDay(data);
       checkRecentCities(data, zipCode);
       populateFiveDay(data);
-      writeRecentCities(zipCode);
+      writeRecentCities();
     });
 });
 
-$(document).on('click', function(e) {
+// Same thing as above, but handles click on the populated recent city list items.
+$(document).on("click", function (e) {
   if (e.target.id == "recent-city") {
     let zipCode = e.target.getAttribute("zip");
     let link = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
     fetch(link)
-    .then((response) => response.json())
-    .then((data) => {
-      populateFiveDay(data);
-      populateOneDay(data);
-    })
+      .then((response) => response.json())
+      .then((data) => {
+        populateFiveDay(data);
+        populateOneDay(data);
+      });
   }
-})
+});
 
 function writeRecentCities() {
   listGroup.empty();
@@ -44,37 +48,19 @@ function writeRecentCities() {
 
 function checkRecentCities(data, zip) {
   let city = {
-    "name": data.city.name,
-    "zip": zip
-  }
+    name: data.city.name,
+    zip: zip,
+  };
 
-  let addCity;
-
-  if (recentCities.indexOf(city.name) !== -1) {
-    addCity = false;
-  } else {
-    addCity = true;
-  }
-
-  console.log(addCity);
-
-  if (addCity && recentCities.length < 5) {
+  if (recentCities.length < 5) {
     recentCities.unshift(city);
-  }  else if (addCity && recentCities.length > 5) {
+  }
+   else {
     recentCities.pop();
     recentCities.unshift(city);
   }
 
-  // if (recentCities.length < 5) {
-  //   recentCities.unshift(city);
-  // }
-  //  else {
-  //   recentCities.pop();
-  //   recentCities.unshift(city);
-  // }
-
   localStorage.setItem("recent", JSON.stringify(recentCities));
-  console.log(recentCities);
 }
 
 // Runs at load of page, fetches local storage and populates the recent cities.
@@ -133,16 +119,17 @@ function populateOneDay(data) {
 
   // Populate an html template to append to the result container
   let html =
-    `<h2>${cityName}</h2>` +
-    `<p class="result-p">${listItem.main.temp.toFixed(0)}&deg F</p>` +
-    `<p class="result-p">${listItem.main.humidity}%</p>` +
-    `<p class="result-p">${listItem.wind.speed} MPH</p>`;
+    `<h2>${cityName} ${unixToDate(listItem.dt)}</h2>` +
+    `<p class="result-p">Temp: ${listItem.main.temp.toFixed(0)}&degF</p>` +
+    `<p class="result-p">Humidity: ${listItem.main.humidity}%</p>` +
+    `<p class="result-p">Wind: ${listItem.wind.speed} MPH</p>`;
 
   oneDayResult.append(html);
 }
 
 // Takes the data returned from the fetch, and populates the five day forecast
 function populateFiveDay(data) {
+  fiveDayTitle.removeClass("hide");
   // Clear the container for each fetch
   fiveDayResult.empty();
   // Simplifies my future statements
@@ -156,7 +143,7 @@ function populateFiveDay(data) {
         `<div class="col-2 card">` +
         `<h5 class="card-title">${unixToDate(dataList[i].dt)}</h5>` +
         `<div class="card-text">` +
-        `<img src="https://openweathermap.org/img/wn/${listItem.weather[0].icon}@2x.png"` +
+        `<img src="https://openweathermap.org/img/wn/${listItem.weather[0].icon}@2x.png" alt="Weather Icon"/>` +
         `</div>` +
         `<p class="card-text result-p">Temp: ${listItem.main.temp.toFixed(
           0
