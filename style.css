@@ -1,9 +1,12 @@
 body {
   font-size: 10px;
+  background-color: #457B9D;
 }
 
 header {
   padding: 1rem;
+  background-color: #1D3557;
+  color: #F1FAEE;
 }
 
 header h1 {
@@ -11,12 +14,13 @@ header h1 {
 }
 
 main {
-  padding-top: 1rem;
   padding-bottom: 4rem;
+
+  color: #F1FAEE;
 }
 
 .search-container {
-    /* background-color: blue; */
+
     padding: 1rem;
 
 }
@@ -27,6 +31,7 @@ main {
 
 .list-group li {
     padding: 1rem;
+    color: #1D3557;
 }
 
 .results-container {
@@ -35,11 +40,13 @@ main {
 }
 
 #one-day-result {
-    border: 1px solid rgb(204, 204, 204);
+    color: #1D3557;
+    margin-top: 2rem;
+    border: 1px solid #1D3557;
     border-radius: 5px;
     padding-top: 2rem;
     padding-bottom: 3rem;
-    box-shadow: 1px 1px 10px rgb(199, 199, 199);
+    box-shadow: 1px 1px 10px #1D3557;
     /* background-image:
         linear-gradient(to right, #ffffff, #ffffff27,#3a252500),
         url("assets/snow.jpg"); */
@@ -53,6 +60,7 @@ main {
 
 #five-day-forecast {
     padding: 2rem 4rem;
+
 }
 
 .card-title {
@@ -62,7 +70,10 @@ main {
 .card {
     margin-top: 1rem;
     padding: 1rem .5rem;
-    background-color: rgb(71, 71, 252);
-    color: white;
+    background-color: #A8DADC;
+    color: #1D3557;
 }
 
+.hide {
+    visibility: hidden;
+}

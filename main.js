@@ -48,13 +48,30 @@ function checkRecentCities(data, zip) {
     "zip": zip
   }
 
-  if (recentCities.length < 5) {
-    recentCities.unshift(city);
+  let addCity;
+
+  if (recentCities.indexOf(city.name) !== -1) {
+    addCity = false;
+  } else {
+    addCity = true;
   }
-   else {
+
+  console.log(addCity);
+
+  if (addCity && recentCities.length < 5) {
+    recentCities.unshift(city);
+  }  else if (addCity && recentCities.length > 5) {
     recentCities.pop();
     recentCities.unshift(city);
   }
+
+  // if (recentCities.length < 5) {
+  //   recentCities.unshift(city);
+  // }
+  //  else {
+  //   recentCities.pop();
+  //   recentCities.unshift(city);
+  // }
 
   localStorage.setItem("recent", JSON.stringify(recentCities));
   console.log(recentCities);
@@ -71,6 +88,7 @@ function init() {
 
 // Takes the data returned from the fetch, and populates the current day forecast
 function populateOneDay(data) {
+  oneDayResult.removeClass("hide");
   // Empties the container for each fetch
   oneDayResult.empty();
   // variables to help simplify other inputs
