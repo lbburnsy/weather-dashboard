@@ -34,6 +34,12 @@ main {
     color: #1D3557;
 }
 
+.list-group li:hover {
+    background-color: #1D3557;
+    color: #F1FAEE;
+    transition: .25s;
+}
+
 .results-container {
     /* background-color: blue; */
     padding: 1rem;
