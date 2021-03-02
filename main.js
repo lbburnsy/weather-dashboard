@@ -120,6 +120,12 @@ function checkRecentCities(data, zip) {
     zip: zip,
   };
 
+  for (let i = 0; i < recentCities.length; i++) {
+    if (recentCities[i].zip == zip) {
+      recentCities.splice(i, 1);
+    }
+  }
+
   if (recentCities.length < 5) {
     recentCities.unshift(city);
   } else {
