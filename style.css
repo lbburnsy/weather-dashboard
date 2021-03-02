@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
+
 /* Generic body stylings */
 body {
   font-size: 10px;
   background-color: #457b9d;
+  font-family: 'Overpass', sans-serif;
 }
 
 /* Stylings for the header and it's h1 */
