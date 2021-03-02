@@ -57,6 +57,8 @@ $(document).on("click", function (e) {
       .then((data) => {
         populateFiveDay(data);
         populateOneDay(data);
+        checkRecentCities(data, zipCode);
+        writeRecentCities();
         lat = data.city.coord.lat;
         lon = data.city.coord.lon;
         let oneCallLink = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=${apiKey}`;
