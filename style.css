@@ -56,6 +56,9 @@ main {
   padding-bottom: 3rem;
   box-shadow: 1px 1px 10px #1d3557;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 /* Styles the p tags that populate the one day result */
