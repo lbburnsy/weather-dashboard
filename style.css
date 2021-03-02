@@ -1,8 +1,10 @@
+/* Generic body stylings */
 body {
   font-size: 10px;
   background-color: #457B9D;
 }
 
+/* Stylings for the header and it's h1 */
 header {
   padding: 1rem;
   background-color: #1D3557;
@@ -13,18 +15,19 @@ header h1 {
   font-size: 2rem;
 }
 
+/* Stylings for the overarching main container */
 main {
   padding-bottom: 4rem;
 
   color: #F1FAEE;
 }
 
+/* Specific stylings for the search container */
 .search-container {
-
     padding: 1rem;
-
 }
 
+/* Stylings for the list group that makes up the recent cities */
 .list-group {
     font-size: 1.5rem;
 }
@@ -40,11 +43,7 @@ main {
     transition: .25s;
 }
 
-.results-container {
-    /* background-color: blue; */
-    padding: 1rem;
-}
-
+/* Stylings for the one day results container */
 #one-day-result {
     color: #1D3557;
     margin-top: 2rem;
@@ -53,22 +52,22 @@ main {
     padding-top: 2rem;
     padding-bottom: 3rem;
     box-shadow: 1px 1px 10px #1D3557;
-    /* background-image:
-        linear-gradient(to right, #ffffff, #ffffff27,#3a252500),
-        url("assets/snow.jpg"); */
     background-size: cover;
 }
 
+/* Styles the p tags that populate the one day result */
 .result-p {
     font-size: 1.5rem;
     padding-top: 1.2rem;
 }
 
+
+/* Stylings for the container for the five day forecast */
 #five-day-forecast {
     padding: 2rem 4rem;
-
 }
 
+/* These two tags select the card that is populated by the fetch */
 .card-title {
     font-size: 1.5rem;
 }
@@ -80,6 +79,7 @@ main {
     color: #1D3557;
 }
 
+/* A simple class to use through javascript to hide elements */
 .hide {
     visibility: hidden;
 }
