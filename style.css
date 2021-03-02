@@ -1,14 +1,14 @@
 /* Generic body stylings */
 body {
   font-size: 10px;
-  background-color: #457B9D;
+  background-color: #457b9d;
 }
 
 /* Stylings for the header and it's h1 */
 header {
   padding: 1rem;
-  background-color: #1D3557;
-  color: #F1FAEE;
+  background-color: #1d3557;
+  color: #f1faee;
 }
 
 header h1 {
@@ -19,67 +19,66 @@ header h1 {
 main {
   padding-bottom: 4rem;
 
-  color: #F1FAEE;
+  color: #f1faee;
 }
 
 /* Specific stylings for the search container */
 .search-container {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 /* Stylings for the list group that makes up the recent cities */
 .list-group {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .list-group li {
-    padding: 1rem;
-    color: #1D3557;
+  padding: 1rem;
+  color: #1d3557;
 }
 
 .list-group li:hover {
-    background-color: #1D3557;
-    color: #F1FAEE;
-    transition: .25s;
+  background-color: #1d3557;
+  color: #f1faee;
+  transition: 0.25s;
 }
 
 /* Stylings for the one day results container */
 #one-day-result {
-    color: #1D3557;
-    margin-top: 2rem;
-    border: 1px solid #1D3557;
-    border-radius: 5px;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    box-shadow: 1px 1px 10px #1D3557;
-    background-size: cover;
+  color: #1d3557;
+  margin-top: 2rem;
+  border: 1px solid #1d3557;
+  border-radius: 5px;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  box-shadow: 1px 1px 10px #1d3557;
+  background-size: cover;
 }
 
 /* Styles the p tags that populate the one day result */
 .result-p {
-    font-size: 1.5rem;
-    padding-top: 1.2rem;
+  font-size: 1.5rem;
+  padding-top: 1.2rem;
 }
-
 
 /* Stylings for the container for the five day forecast */
 #five-day-forecast {
-    padding: 2rem 4rem;
+  padding: 2rem 4rem;
 }
 
 /* These two tags select the card that is populated by the fetch */
 .card-title {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .card {
-    margin-top: 1rem;
-    padding: 1rem .5rem;
-    background-color: #A8DADC;
-    color: #1D3557;
+  margin-top: 1rem;
+  padding: 1rem 0.5rem;
+  background-color: #a8dadc;
+  color: #1d3557;
 }
 
 /* A simple class to use through javascript to hide elements */
 .hide {
-    visibility: hidden;
+  visibility: hidden;
 }
