@@ -17,7 +17,13 @@ searchBtn.on("click", () => {
   let lon;
   let fiveDayLink = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
   fetch(fiveDayLink)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error("Invalid request, please try again.");
+      }
+    })
     .then((data) => {
       populateOneDay(data);
       checkRecentCities(data, zipCode);
@@ -27,6 +33,9 @@ searchBtn.on("click", () => {
       lon = data.city.coord.lon;
       let oneCallLink = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=${apiKey}`;
       fetchUV(oneCallLink);
+    })
+    .catch((error) => {
+      alert(error)
     });
 });
 
@@ -38,7 +47,13 @@ $(document).on("click", function (e) {
     let lon;
     let fiveDayLink = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
     fetch(fiveDayLink)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error("Invalid request, please try again.");
+        }
+      })
       .then((data) => {
         populateFiveDay(data);
         populateOneDay(data);
@@ -46,6 +61,9 @@ $(document).on("click", function (e) {
         lon = data.city.coord.lon;
         let oneCallLink = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=${apiKey}`;
         fetchUV(oneCallLink);
+      })
+      .catch((error) => {
+        alert(error)
       });
   }
 });
@@ -53,16 +71,25 @@ $(document).on("click", function (e) {
 // Function that fetches the seperate UV link
 function fetchUV(link) {
   fetch(link)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error("Invalid request, please try again.");
+      }
+    })
     .then((data) => {
       let uv = $("<p>");
       let indexValue = $("<span>");
-      indexValue.text(data.current.uvi * 10);
-      colorUv((data.current.uvi * 10), indexValue);
+      indexValue.text(data.current.uvi);
+      colorUv((data.current.uvi), indexValue);
       uv.addClass("card-text result-p");
       uv.text(`UV Index: `);
       uv.append(indexValue);
       oneDayResult.append(uv);
+    })
+    .catch((error) => {
+      alert(error)
     });
 }
 
