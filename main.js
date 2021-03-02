@@ -13,14 +13,20 @@ const apiKey = "3eb9c4f39fdd105936858d16b944d3e1";
 searchBtn.on("click", () => {
   // Gets the zip from the user input
   let zipCode = searchInput.val();
-  let link = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
-  fetch(link)
+  let lat;
+  let lon;
+  let fiveDayLink = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
+  fetch(fiveDayLink)
     .then((response) => response.json())
     .then((data) => {
       populateOneDay(data);
       checkRecentCities(data, zipCode);
       populateFiveDay(data);
       writeRecentCities();
+      lat = data.city.coord.lat;
+      lon = data.city.coord.lon;
+      let oneCallLink = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=${apiKey}`;
+      fetchUV(oneCallLink);
     });
 });
 
@@ -28,15 +34,50 @@ searchBtn.on("click", () => {
 $(document).on("click", function (e) {
   if (e.target.id == "recent-city") {
     let zipCode = e.target.getAttribute("zip");
-    let link = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
-    fetch(link)
+    let lat;
+    let lon;
+    let fiveDayLink = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&appid=${apiKey}&units=imperial`;
+    fetch(fiveDayLink)
       .then((response) => response.json())
       .then((data) => {
         populateFiveDay(data);
         populateOneDay(data);
+        lat = data.city.coord.lat;
+        lon = data.city.coord.lon;
+        let oneCallLink = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,daily,alerts&appid=${apiKey}`;
+        fetchUV(oneCallLink);
       });
   }
 });
+
+// Function that fetches the seperate UV link
+function fetchUV(link) {
+  fetch(link)
+    .then((response) => response.json())
+    .then((data) => {
+      let uv = $("<p>");
+      let indexValue = $("<span>");
+      indexValue.text(data.current.uvi * 10);
+      colorUv((data.current.uvi * 10), indexValue);
+      uv.addClass("card-text result-p");
+      uv.text(`UV Index: `);
+      uv.append(indexValue);
+      oneDayResult.append(uv);
+    });
+}
+
+// Function that styles the UV span based on value
+function colorUv(val, el) {
+  if (val < 3) {
+    el.addClass("uv-low")
+  } else if (val < 6) {
+    el.addClass("uv-med")
+  } else if (val < 10) {
+    el.addClass("uv-high")
+  } else {
+    el.addClass("uv-danger");
+  }
+}
 
 function writeRecentCities() {
   listGroup.empty();
@@ -54,8 +95,7 @@ function checkRecentCities(data, zip) {
 
   if (recentCities.length < 5) {
     recentCities.unshift(city);
-  }
-   else {
+  } else {
     recentCities.pop();
     recentCities.unshift(city);
   }
