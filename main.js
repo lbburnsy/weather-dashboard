@@ -35,7 +35,7 @@ searchBtn.on("click", () => {
       fetchUV(oneCallLink);
     })
     .catch((error) => {
-      alert(error)
+      alert(error);
     });
 });
 
@@ -65,7 +65,7 @@ $(document).on("click", function (e) {
         fetchUV(oneCallLink);
       })
       .catch((error) => {
-        alert(error)
+        alert(error);
       });
   }
 });
@@ -84,25 +84,25 @@ function fetchUV(link) {
       let uv = $("<p>");
       let indexValue = $("<span>");
       indexValue.text(data.current.uvi);
-      colorUv((data.current.uvi), indexValue);
+      colorUv(data.current.uvi, indexValue);
       uv.addClass("card-text result-p");
       uv.text(`UV Index: `);
       uv.append(indexValue);
       oneDayResult.append(uv);
     })
     .catch((error) => {
-      alert(error)
+      alert(error);
     });
 }
 
 // Function that styles the UV span based on value
 function colorUv(val, el) {
   if (val < 3) {
-    el.addClass("uv-low")
+    el.addClass("uv-low");
   } else if (val < 6) {
-    el.addClass("uv-med")
+    el.addClass("uv-med");
   } else if (val < 10) {
-    el.addClass("uv-high")
+    el.addClass("uv-high");
   } else {
     el.addClass("uv-danger");
   }

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Overpass&display=swap");
 
 /* Generic body stylings */
 body {
   font-size: 10px;
   background-color: #457b9d;
-  font-family: 'Overpass', sans-serif;
+  font-family: "Overpass", sans-serif;
 }
 
 /* Stylings for the header and it's h1 */
@@ -70,7 +70,7 @@ main {
 .result-p span {
   padding: 1rem;
   color: #f1faee;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 /* Styles for the uv span */
@@ -79,7 +79,7 @@ main {
 }
 
 .uv-med {
-  color: #1d3557!important;
+  color: #1d3557 !important;
   background-color: yellow;
 }
 
