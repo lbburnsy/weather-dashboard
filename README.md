@@ -7,7 +7,7 @@ Deployed Application: https://lbburnsy.github.io/weather-dashboard/
 Knowing what the weather is like in a given location is important knowledge to have.
 Use this app as a one stop for a quick over view of today's weather, as well as a forecast for the next 5 days.
 
-!["Weather Dashboard Gif"]("assets/weather-dashboard.gif")
+!["Weather Dashboard Gif"]("./assets/weather-dashboard.gif")
 
 ## Functionality
 
